@@ -7,18 +7,18 @@ cs1253 Sec 1
 cs125326
 
 Specify the requirement:
-Calculate average and highest sales amount for each employee and 
+Calculate average and highest sales amount for each employee and
 each quarter, print a report of all employees, a singular report,
-and a report of all employees with their highest and 
+and a report of all employees with their highest and
 average sales amount for Wonderful World of Widgets Company.
 
 Data Analysis:
 Name        Type       Scope              Content
-Constants:            
+Constants:
 MAX         integer    global             Static allocation of array, 20
 RECS        integer    global             Number of sales records, 4
-                      
-Variables:            
+
+Variables:
 input       file       main               Input file amts.data
 index       integer    main               1st dimension array position
 index2      integer    PrintReport        2nd dimension array position
@@ -61,7 +61,7 @@ Prompt user for report they want and print report of their choosing
 	Complete Report
 		Calculate highest and average sales for each quarter
 		Print sales amount of each quarter for all employees
-		Print summary output of highest and averages sales 
+		Print summary output of highest and averages sales
 		for each quarter
 	Record Report
 		Print all employee's and their average and highest sales amount
@@ -75,7 +75,7 @@ begin
 	begin
 		read person[mcount].first
 		read person[mcount].last
-		person[mcount].name = person[mcount].last + ", " + 
+		person[mcount].name = person[mcount].last + ", " +
 		person[mcount].first
 		for (index = 0 to RECS)
 		begin
@@ -110,7 +110,7 @@ begin
 		then
 		else
 		then
-			print "Invalid selection. Please try again." 
+			print "Invalid selection. Please try again."
 	end
 end
 
@@ -382,7 +382,7 @@ int main()
 	{
 		input>>person[mcount].first;
 		input>>person[mcount].last;
-		person[mcount].name = person[mcount].last + ", " + 
+		person[mcount].name = person[mcount].last + ", " +
 		person[mcount].first;
 		for (index = 0; index < RECS; index++)
 		{
@@ -424,8 +424,8 @@ int main()
 }
 
 /*
-Purpose: 
-Input: 
+Purpose:
+Input:
 */
 void PrintHeader()
 {
@@ -438,8 +438,8 @@ void PrintHeader()
 }
 
 /*
-Purpose: 
-Input: 
+Purpose:
+Input:
 */
 void PrintAsterisks()
 {
@@ -447,8 +447,8 @@ void PrintAsterisks()
 }
 
 /*
-Purpose: 
-Input: 
+Purpose:
+Input:
 */
 void PrintLine()
 {
@@ -456,9 +456,9 @@ void PrintLine()
 }
 
 /*
-Purpose: 
-Input: 
-Output: 
+Purpose:
+Input:
+Output:
 */
 int PrintMenu()
 {
@@ -473,8 +473,8 @@ int PrintMenu()
 }
 
 /*
-Purpose: 
-Input: 
+Purpose:
+Input:
 */
 void PrintReport(int count, employee1 person[])
 {
@@ -507,8 +507,8 @@ void PrintReport(int count, employee1 person[])
 }
 
 /*
-Purpose: 
-Input: 
+Purpose:
+Input:
 */
 void PrintSummary(int count, employee1 person[])
 {
@@ -544,8 +544,8 @@ void PrintSummary(int count, employee1 person[])
 }
 
 /*
-Purpose: 
-Input: 
+Purpose:
+Input:
 */
 void PrintRecord(int count, employee1 person[])
 {
@@ -567,9 +567,9 @@ void PrintRecord(int count, employee1 person[])
 }
 
 /*
-Purpose: 
-Input: 
-Output: 
+Purpose:
+Input:
+Output:
 */
 void Average(int count, employee1 person[])
 {
@@ -588,9 +588,9 @@ void Average(int count, employee1 person[])
 }
 
 /*
-Purpose: 
-Input: 
-Output: 
+Purpose:
+Input:
+Output:
 */
 void QAverage(int count, employee1 person[], double average[])
 {
@@ -681,7 +681,7 @@ void SelectionSortName(employee1 person[], int n)
 
 /*
 Purpose: This function searches for a record using the name as the key
-Input: This function receives name and count from main and key from 
+Input: This function receives name and count from main and key from
 PrintReport
 Output: Returns the location of the record if matches or -1 otherwise
 */

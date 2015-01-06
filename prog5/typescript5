@@ -7,8 +7,8 @@ cs1253 Sec 1
 cs125326
 
 Specify the requirement:
-Calculate overdue books balances, average balances, highest and lowest 
-balances and their respective account numbers for East Baton Rouge 
+Calculate overdue books balances, average balances, highest and lowest
+balances and their respective account numbers for East Baton Rouge
 Parish Library.
 
 Data Analysis:
@@ -23,7 +23,7 @@ Variables:
 book            file     main         The input file book.data
 report          file     main         The output file report.out
 students[]      object   main         Object of the class fines
-                         PrintTable   
+                         PrintTable
 mID[]           integer  main         Library account numbers
 mdays[]         integer  main         The number of days a book is late
 mcount          integer  main         The number of accounts with late books
@@ -198,7 +198,7 @@ void PrintLine(ofstream &report);
 void PrintTable(ofstream &report, fines student[], int ID[], int days[], double &lowest, int &lowID,
 double &highest, int &highID, double &mtotal, int count);
 
-void PrintSummary(ofstream &report, double avg, double highest, 
+void PrintSummary(ofstream &report, double avg, double highest,
 int highID, double lowest, int lowID);
 
 int main()
@@ -235,7 +235,7 @@ int main()
 }
 
 /*
-Purpose: Prints the name of the library, report name, date, and table 
+Purpose: Prints the name of the library, report name, date, and table
 headings
 Input: This function receives report from main
 */
@@ -270,9 +270,9 @@ void PrintLine(ofstream &report)
 }
 
 /*
-Purpose: Prints the table of data which includes ID, days overdue, and 
+Purpose: Prints the table of data which includes ID, days overdue, and
 balance
-Input: This function receives report, student array, ID array, days array, 
+Input: This function receives report, student array, ID array, days array,
 lowest, lowID, highest, highID, mtotal, and count from main
 */
 void PrintTable(ofstream &report, fines student[], int ID[], int days[], double &lowest, int &lowID,
@@ -292,11 +292,11 @@ double &highest, int &highID, double &mtotal, int count)
 }
 
 /*
-Purpose: Prints the summary which includes the average balance, highest 
+Purpose: Prints the summary which includes the average balance, highest
 and lowest balances, and highest and lowest balance IDs
-Input: This function receives report, avg, highest, highID, lowest, and 
+Input: This function receives report, avg, highest, highID, lowest, and
 lowID
-Output: Prints the average balance, highest and lowest balances, and their 
+Output: Prints the average balance, highest and lowest balances, and their
 respective IDs
 */
 void PrintSummary(ofstream &report, double avg, double highest,

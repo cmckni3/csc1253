@@ -15,10 +15,10 @@ Name        Type       Scope         Content
 MAX         integer    global        Static number of records for arrays
 MINUTES     integer    global        Time constant for minutes per hour, 60
 SECONDS     integer    global        Time constant for second per minute, 60
-                                
+
 Variables:
 input       file       main          The input file time.data
-out         file       main          The output file out.data 
+out         file       main          The output file out.data
 count       integer    main          Number of people served
                        PrintTable
                        PrintSummary
@@ -104,7 +104,7 @@ begin
 		while not EOF
 		begin
 			read arrih[count], arrim[count] from file input
-			read  arris[count] from file input 
+			read  arris[count] from file input
 			read servh[count], servm[count] from file input
 			read servs[count] from file input
 			count = count + 1
@@ -194,7 +194,7 @@ begin
 	begin
 		if (wait[index] > longest)
 		then longest = wait[index]
-		
+
 	end
 end
 
@@ -346,7 +346,7 @@ void PrintLine(ofstream &out)
 }
 
 /*
-Purpose: Prints the data in the form of a table 
+Purpose: Prints the data in the form of a table
 Input: This function receives out, ID[], count, wait[], arri[],
 and serv[] from main
 */
@@ -378,12 +378,12 @@ double stdev)
 }
 
 /*
-Purpose: Calculates the wait times, arrival times, and served times in 
+Purpose: Calculates the wait times, arrival times, and served times in
 seconds and returns them to main
 Input: This function receives count, arrih[], arrim[], arris[],
-servh[], servm[], servs[], arri[], serv[], wait[], and 
+servh[], servm[], servs[], arri[], serv[], wait[], and
 a reference to total from main
-Output: Returns the calculated wait times, wait[], arrival times converted 
+Output: Returns the calculated wait times, wait[], arrival times converted
 to seconds, arri[], and converted served times, serv[], to main
 */
 void CalcWait(int count, int arrih[], int arrim[], int arris[],

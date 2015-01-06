@@ -7,8 +7,8 @@ cs1253 sec 1
 cs125326
 
 Specification the Requirement:
-Calculate the cost of gas at Clean & Gas Convenience Store, with or 
-without a car wash, where a discount on a car wash is given for a purchase 
+Calculate the cost of gas at Clean & Gas Convenience Store, with or
+without a car wash, where a discount on a car wash is given for a purchase
 of $20 or more of gas.
 
 Data analysis:
@@ -18,7 +18,7 @@ Constants:
 	UNLEADED	real		price per gallon of unleaded gas
 	SUPER		real		price per gallon of superunleaded gas
 	DISCOUNTCARWASH	real		car wash fee with $20 gas purchase
-	FULLCARWASH	real		car wash fee without $20 gas purchase	
+	FULLCARWASH	real		car wash fee without $20 gas purchase
 
 Variables:
 	count		integer		number of customers
@@ -74,7 +74,7 @@ begin
 		gasprice = gallons*UNLEADED
 		if carwash = Y and gasprice >= 20
 		then washcost = DISCOUNTCARWASH
-		else 
+		else
 		if carwash = Y and gasprice < 20
 		then washcost = FULLCARWASH
 		else
@@ -133,7 +133,7 @@ const double REGULAR = 3.49;		//regular price per gallon
 const double UNLEADED = 3.79;		//unleaded price per gallon
 const double SUPER = 3.99;		//superunleaded price per gallon
 const double DISCOUNTCARWASH = 3.00;	//car wash price with gas >= $20
-const double FULLCARWASH = 6.00;	//car wash price with gas < $20 
+const double FULLCARWASH = 6.00;	//car wash price with gas < $20
 
 int main()
 {
@@ -245,10 +245,10 @@ cs125326@classes:~/prog1> a.out
 
 Enter gallons of gas: 20.5
 
-Enter the gas type: 
-R for regular: 
-U for unleaded: 
-S for superunleaded: 
+Enter the gas type:
+R for regular:
+U for unleaded:
+S for superunleaded:
 N for no gas: R
 
 Enter car wash option <Y for yes, N for no>: N
@@ -269,10 +269,10 @@ Total due:                         71.55
 
 Enter gallons of gas: 10.5
 
-Enter the gas type: 
-R for regular: 
-U for unleaded: 
-S for superunleaded: 
+Enter the gas type:
+R for regular:
+U for unleaded:
+S for superunleaded:
 N for no gas: U
 
 Enter car wash option <Y for yes, N for no>: Y
@@ -293,10 +293,10 @@ Total due:                         42.80
 
 Enter gallons of gas: 0
 
-Enter the gas type: 
-R for regular: 
-U for unleaded: 
-S for superunleaded: 
+Enter the gas type:
+R for regular:
+U for unleaded:
+S for superunleaded:
 N for no gas: N
 
 Enter car wash option <Y for yes, N for no>: Y
@@ -317,10 +317,10 @@ Total due:                          6.00
 
 Enter gallons of gas: 0
 
-Enter the gas type: 
-R for regular: 
-U for unleaded: 
-S for superunleaded: 
+Enter the gas type:
+R for regular:
+U for unleaded:
+S for superunleaded:
 N for no gas: N
 
 Enter car wash option <Y for yes, N for no>: n Y
@@ -341,10 +341,10 @@ Total due:                          6.00
 
 Enter gallons of gas: 5
 
-Enter the gas type: 
-R for regular: 
-U for unleaded: 
-S for superunleaded: 
+Enter the gas type:
+R for regular:
+U for unleaded:
+S for superunleaded:
 N for no gas: R
 
 Enter car wash option <Y for yes, N for no>: N
@@ -365,10 +365,10 @@ Total due:                         17.45
 
 Enter gallons of gas: 20
 
-Enter the gas type: 
-R for regular: 
-U for unleaded: 
-S for superunleaded: 
+Enter the gas type:
+R for regular:
+U for unleaded:
+S for superunleaded:
 N for no gas: S
 
 Enter car wash option <Y for yes, N for no>: Y
@@ -389,10 +389,10 @@ Total due:                         82.80
 
 Enter gallons of gas: 65
 
-Enter the gas type: 
-R for regular: 
-U for unleaded: 
-S for superunleaded: 
+Enter the gas type:
+R for regular:
+U for unleaded:
+S for superunleaded:
 N for no gas: U
 
 Enter car wash option <Y for yes, N for no>: N

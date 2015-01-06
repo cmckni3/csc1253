@@ -87,7 +87,7 @@ begin
 			SelectionSort(totals, mcount, name, sales, weeksales)
 			PrintSummary(mcount, weeksales, name, totals, highest)
 			case 2:
-			SelectionSortName(name, mcount, totals, sales, 
+			SelectionSortName(name, mcount, totals, sales,
 			weeksales)
 			PrintReport(name, weeksales, totals, mcount)
 			case 3:
@@ -132,7 +132,7 @@ end
 function PrintReport(string name[], real weeksales[][RECS],
 real totals[], integer count)
 begin
-	print "Please, enter a name to search for in the 
+	print "Please, enter a name to search for in the
 	format firstname lastname: "
 	read first
 	read last
@@ -198,7 +198,7 @@ begin
 		for (index2 = 0 to RECS)
 		begin
 			weeksales[index][index2] = sales[index][index2]*SALE
-			totals[index] = totals[index] 
+			totals[index] = totals[index]
 			+ weeksales[index][index2]
 		end
 	end
@@ -454,7 +454,7 @@ int PrintMenu()
 }
 
 /*
-Purpose: This function prints the singular report by prompting the user 
+Purpose: This function prints the singular report by prompting the user
 for a name and finding the name and record
 Input: This function receives name, weeksales, totals, and count from main
 */
@@ -494,9 +494,9 @@ double totals[], int count)
 }
 
 /*
-Purpose: This function prints an overall summary of the employees with 
+Purpose: This function prints an overall summary of the employees with
 each weeks' totals and their overal total and the highest of each week
-Input: This function receives count, weeksales, name, totals, and highest 
+Input: This function receives count, weeksales, name, totals, and highest
 from main
 */
 void PrintSummary(int count, double weeksales[][RECS], string name[],
@@ -530,9 +530,9 @@ double totals[], double highest[])
 }
 
 /*
-Purpose: This function calculates the sales for each week and the total 
+Purpose: This function calculates the sales for each week and the total
 sales for each employee
-Input: This function receives count, sales, weeksales, totals, and highest 
+Input: This function receives count, sales, weeksales, totals, and highest
 from main
 Output: Total for each employee and sales total by week
 */
@@ -577,7 +577,7 @@ void Highest(int count, double highest[], double weeksales[][RECS])
 
 /*
 Purpose: This function sorts the records by total
-Input: This function receives totals, n, name, sales, and weeksales from 
+Input: This function receives totals, n, name, sales, and weeksales from
 main
 Ouput: Array are modified and are sorted by total after function runs
 */
@@ -625,7 +625,7 @@ int sales[][RECS], double weeksales[][RECS])
 
 /*
 Purpose: This function sorts records by name
-Input: This function receives name, n (count), totals, sales, and 
+Input: This function receives name, n (count), totals, sales, and
 weeksales from main
 Ouput: Arrays are modified and sorted by name after function is run
 */
@@ -673,7 +673,7 @@ int sales[][RECS], double weeksales[][RECS])
 
 /*
 Purpose: This function searches for a record using the name as the key
-Input: This function receives name and count from main and key from 
+Input: This function receives name and count from main and key from
 PrintReport
 Output: Returns the location of the record if matches or -1 otherwise
 */
@@ -736,7 +736,7 @@ The highest sales was 6158.25 for week 4
 2. Find Record
 3. Exit
 Enter selection: 2
-Please, enter a name to search for in the format firstname lastname: 
+Please, enter a name to search for in the format firstname lastname:
 Zeek Zilder
 ***********************************************************************
                      Wolfe Manufacturing Company

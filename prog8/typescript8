@@ -83,7 +83,7 @@ int main()
 		mcount++;
 		input>>uary[mcount].ID;
 	}
-	
+
 	// Copy the unsorted array to other arrays that will be sorted by each sort
 	for (index = 0; index < mcount; index++)
 	{
@@ -92,7 +92,7 @@ int main()
 		iary[index] = uary[index];
 		mary[index] = uary[index];
 	}
-	
+
 	// Prompt the user to run the system
 	op = PrintMenu();
 	while (op != 'n')
@@ -110,7 +110,7 @@ int main()
 			report<<bary[index].age<<endl;
 		}
 		report<<endl<<"    Complexity Measure, O(n) = "<<bub<<endl<<endl;
-		
+
 		// Sort using insertion sort
 		ins = 0;
 		InsertSort(iary, mcount, ins);
@@ -124,7 +124,7 @@ int main()
 			report<<iary[index].age<<endl;
 		}
 		report<<endl<<"    Complexity Measure, O(n) = "<<ins<<endl<<endl;
-		
+
 		// Sort using selection sort
 		sel = 0;
 		SelectSort(sary, mcount, sel);
@@ -138,7 +138,7 @@ int main()
 			report<<sary[index].age<<endl;
 		}
 		report<<endl<<"    Complexity Measure, O(n) = "<<sel<<endl<<endl;
-		
+
 		// Sort using merge sort
 		mer = 0;
 		MergeSort(mary, 0, mcount-1, mer);
@@ -152,7 +152,7 @@ int main()
 			report<<mary[index].age<<endl;
 		}
 		report<<endl<<"    Complexity Measure, O(n) = "<<mer<<endl<<endl;
-		
+
 		op = PrintMenu();
 	}
 	// Close the files
@@ -329,7 +329,7 @@ void Merge(student1 person[], int leftfirst, int leftlast, int rightfirst, int r
 		}
 		j++;
 	}
-	
+
 	while(leftfirst <= leftlast)
 	{
 		temp[j] = person[leftfirst];
@@ -337,7 +337,7 @@ void Merge(student1 person[], int leftfirst, int leftlast, int rightfirst, int r
 		leftfirst++;
 		j++;
 	}
-	
+
 	while(rightfirst <= rightlast)
 	{
 		temp[j] = person[rightfirst];
@@ -345,7 +345,7 @@ void Merge(student1 person[], int leftfirst, int leftlast, int rightfirst, int r
 		rightfirst++;
 		j++;
 	}
-	
+
 	for (j = savefirst; j <= rightlast; j++)
 	{
 		person[j] = temp[j];

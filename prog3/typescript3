@@ -7,7 +7,7 @@ cs1253 Sec 1
 cs125326
 
 Specify the requirement:
-Calculate Christmas bonuses, total of bonuses, average 
+Calculate Christmas bonuses, total of bonuses, average
 of bonuses, highest and lowest bonuses for Beta Systems Development, Inc.
 
 Data Analysis:
@@ -104,7 +104,7 @@ begin
 	open the file empsal for reading
 	open the file bonus for reading
 	open the file report for writing
-	get month, day, year, secbonus, secmax, probonus, promax, 
+	get month, day, year, secbonus, secmax, probonus, promax,
 	manbonus, manmax, engbonus, engmax from file bonus
 	PrintHeader(report, month, day, year, secbonus, secmax, probonus,
 	promax, manbonus, manmax, engbonus, engmax)
@@ -190,7 +190,7 @@ end
 
 
 function CalcBonus(file *report, real salary, character title,
-real secbonus, real secmax, real probonus, real promax, 
+real secbonus, real secmax, real probonus, real promax,
 real manbonus, real manmax, real engbonus, real engmax)
 begin
 	if (title = S)
@@ -273,7 +273,7 @@ void PrintAsterisks(ofstream &report);
 
 void PrintLine(ofstream &report);
 
-void PrintSummary(ofstream &report, double total, double avg, 
+void PrintSummary(ofstream &report, double total, double avg,
 int highID, double highest, int lowID, double lowest);
 
 double CalcBonus(ofstream &report, double salary, char title,
@@ -324,7 +324,7 @@ int main()
 	bonus>>manbonus>>manmax;
 	bonus>>engbonus>>engmax;
 
-	PrintHeader(report, month, day, year, secbonus, secmax, 
+	PrintHeader(report, month, day, year, secbonus, secmax,
 	probonus, promax, manbonus, manmax, engbonus, engmax);
 
 	count = 0;
@@ -337,7 +337,7 @@ int main()
 	{
 		empsal>>title>>salary;
 		report<<ID<<setw(16);
-		bonusamt = CalcBonus(report, salary, title, secbonus, 
+		bonusamt = CalcBonus(report, salary, title, secbonus,
 		secmax, probonus, promax, manbonus, manmax, engbonus, engmax);
 		HighestBonus(bonusamt, ID, highest, highID);
 		LowestBonus(bonusamt, ID, lowest, lowID);
@@ -358,14 +358,14 @@ int main()
 
 /*
 Purpose: Print the headings of the program
-Input: This function receives report, month, day, year, 
+Input: This function receives report, month, day, year,
 secbonus, secmax, probonus, promax, manbonus, manmax,
 engbonus, and engmax from main
 Output: Prints the company name, the type of report, the date, asterisks,
 and starts the printing of bonus factors.
 */
-void PrintHeader(ofstream &report, int month, int day, int year, double 
-secbonus, double secmax, double probonus, double promax, double manbonus, 
+void PrintHeader(ofstream &report, int month, int day, int year, double
+secbonus, double secmax, double probonus, double promax, double manbonus,
 double manmax, double engbonus, double engmax)
 {
 	report<<fixed<<showpoint<<setprecision(2);
@@ -415,14 +415,14 @@ void PrintLine(ofstream &report)
 
 
 /*
-Purpose: Prints the report summary which contains the total of the 
+Purpose: Prints the report summary which contains the total of the
 bonuses, average of the bonuses, highest bonus and respective employee ID,
 and the lowest bonus and respective ID
-Input: This function receives the report, total, avg, highID, highest, 
+Input: This function receives the report, total, avg, highID, highest,
 lowID, and lowest from main
 Output: Prints the summary to the file report
 */
-void PrintSummary(ofstream &report, double total, double avg, int highID, 
+void PrintSummary(ofstream &report, double total, double avg, int highID,
 double highest, int lowID, double lowest)
 {
 	PrintLine(report);
@@ -435,15 +435,15 @@ double highest, int lowID, double lowest)
 }
 
 /*
-Purpose: Calculates each employee's bonus 
+Purpose: Calculates each employee's bonus
 Input: This function receives report, salary, title,
 secbonus, secmax, probonus, promax, manbonus, manmax, engbonus,
 and engmax from main
-Output: Returns the calculated bonus to the variable in main which 
+Output: Returns the calculated bonus to the variable in main which
 is also named bonusamt
 */
-double CalcBonus(ofstream &report, double salary, char title, double 
-secbonus, double secmax, double probonus, double promax, double manbonus, 
+double CalcBonus(ofstream &report, double salary, char title, double
+secbonus, double secmax, double probonus, double promax, double manbonus,
 double manmax, double engbonus, double engmax)
 {
 	double bonusamt;          // Bonus an employee gets for Christmas
@@ -491,11 +491,11 @@ double manmax, double engbonus, double engmax)
 
 /*
 Purpose: Calculate the average of the bonuses
-Input: This function receives total of all bonuses, count of the number 
+Input: This function receives total of all bonuses, count of the number
 of employees
 Output: Returns the average of all of the bonuses to the variable in main
 which is also named avg
-*/ 
+*/
 double AvgBonus(double total, int count)
 {
 	double avg;          // Average of all bonuses
@@ -504,12 +504,12 @@ double AvgBonus(double total, int count)
 }
 
 /*
-Purpose: Check the bonus against the current highest bonus and then 
+Purpose: Check the bonus against the current highest bonus and then
 overwrite it if bonus is higher and put the employee's ID in highID
-Input: This function receives bonusamt which is the employee's calculated 
-bonus, ID which is the employee's ID, reference to highest, 
+Input: This function receives bonusamt which is the employee's calculated
+bonus, ID which is the employee's ID, reference to highest,
 reference to highID from main
-Output: Multiple returns of highest and highID where the values of highest 
+Output: Multiple returns of highest and highID where the values of highest
 and highID are modified using pass by reference
 */
 void HighestBonus(double bonusamt, int ID, double &highest, int &highID)
@@ -522,14 +522,14 @@ void HighestBonus(double bonusamt, int ID, double &highest, int &highID)
 }
 
 /*
-Purpose: Check the bonus against the current lowest bonus and then 
+Purpose: Check the bonus against the current lowest bonus and then
 overwrite it if bonus is lower and put the employee's ID in lowID
-Input: This function recievesbonusamt which is the employee's calculated 
-bonus, ID which is the employee's ID, reference to lowest, reference to 
+Input: This function recievesbonusamt which is the employee's calculated
+bonus, ID which is the employee's ID, reference to lowest, reference to
 lowID from main
-Output: Multiple returns of lowest and lowID where the values of lowest 
+Output: Multiple returns of lowest and lowID where the values of lowest
 and lowID are modified using pass by reference
-*/ 
+*/
 void LowestBonus(double bonusamt, int ID, double &lowest, int &lowID)
 {
 	if (bonusamt < lowest)

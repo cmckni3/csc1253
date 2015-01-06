@@ -13,10 +13,10 @@ Name        Type       Scope         Content
 MAX         integer    global        Static number of records for arrays
 MINUTES     integer    global        Time constant for minutes per hour, 60
 SECONDS     integer    global        Time constant for second per minute, 60
-                                
+
 Variables:
 input       file       main          The input file time.data
-out         file       main          The output file out.data 
+out         file       main          The output file out.data
 count       integer    main          Number of people served
                        PrintTable
                        PrintSummary
@@ -91,133 +91,133 @@ Print the summary
 Algorithm:
 function main
 begin
-	open file input for reading
-	open file out for writing
-	PrintHeader(out)
-	count = 0
-	total = 0
-	shortest = 100000000
-	longest = -100000000
-	read ID[count] from file input
-		while not EOF
-		begin
-			read arrih[count], arrim[count] from file input
-			read  arris[count] from file input 
-			read servh[count], servm[count] from file input
-			read servs[count] from file input
-			count = count + 1
-			read ID[count] from file input
-		end
-	CalcWait(count, arrih, arrim, arris, servh, servm, servs,
-	arri, serv, wait, total)
-	PrintTable(out, ID, count, wait, arri, serv);
-	avg = Avg(count, total)
-	Highest(count, wait, longest)
-	Lowest(count, wait, shortest)
-	range = CalcRange(longest, shortest)
-	stdev = CalcDev(count, avg, wait)
-	PrintSummary(out, count, avg, range, stdev)
-	close the file input
-	close the file out
+  open file input for reading
+  open file out for writing
+  PrintHeader(out)
+  count = 0
+  total = 0
+  shortest = 100000000
+  longest = -100000000
+  read ID[count] from file input
+    while not EOF
+    begin
+      read arrih[count], arrim[count] from file input
+      read  arris[count] from file input
+      read servh[count], servm[count] from file input
+      read servs[count] from file input
+      count = count + 1
+      read ID[count] from file input
+    end
+  CalcWait(count, arrih, arrim, arris, servh, servm, servs,
+  arri, serv, wait, total)
+  PrintTable(out, ID, count, wait, arri, serv);
+  avg = Avg(count, total)
+  Highest(count, wait, longest)
+  Lowest(count, wait, shortest)
+  range = CalcRange(longest, shortest)
+  stdev = CalcDev(count, avg, wait)
+  PrintSummary(out, count, avg, range, stdev)
+  close the file input
+  close the file out
 end
 
 function PrintHeader(file *out)
 begin
-	PrintAsterisks(out) to file out
-	print "Rouge Bank" to file out
-	print "Wait Times Report" to file out
-	print "10-21-2008" to file out
-	PrintLine(out)
-	print "ID" to file out
-	print "Arrival" to file out
-	print "Service" to file out
-	print "Wait Time" to file out
+  PrintAsterisks(out) to file out
+  print "Rouge Bank" to file out
+  print "Wait Times Report" to file out
+  print "10-21-2008" to file out
+  PrintLine(out)
+  print "ID" to file out
+  print "Arrival" to file out
+  print "Service" to file out
+  print "Wait Time" to file out
 end
 
 function PrintAsterisks(file *out)
 begin
-	print "*****************" to file out
+  print "*****************" to file out
 end
 
 function PrintLine(file *out)
 begin
-	print "---------------------" to file out
+  print "---------------------" to file out
 end
 
 function PrintTable(file *out, integer ID[], integer count, integer wait[],
 integer arri[], integer serv[])
 begin
-	for index = 0 to count
-	begin
-		print ID[index] to file out
-		print arri[index] to file out
-		print serv[index] to file out
-		print wait[index] to file out
-	end
+  for index = 0 to count
+  begin
+    print ID[index] to file out
+    print arri[index] to file out
+    print serv[index] to file out
+    print wait[index] to file out
+  end
 end
 
 function PrintSummary(file *out, integer count, real avg, integer range,
 real stdev)
 begin
-	PrintLine(out)
-	print "The total number of records: ", count to file out
-	print "The average wait time is ", avg to file out
-	print"The range of wait times is ", range to file out
-	print "The standard deviation is ", stdev to file out
+  PrintLine(out)
+  print "The total number of records: ", count to file out
+  print "The average wait time is ", avg to file out
+  print"The range of wait times is ", range to file out
+  print "The standard deviation is ", stdev to file out
 end
 
 function CalcWait(integer count, integer arrih[], integer arrim[],
 integer arris[], integer servh[],integer servm[], integer servs[],
 integer arri[], integer serv[], integer wait[], integer *total)
 begin
-	for index = 0 to count
-	begin
-		arri[index] = (arrih[index]*MINUTES*SECONDS) +
-		(arrim[index]*SECONDS) + arris[index];
-		serv[index] = (servh[index]*MINUTES*SECONDS) +
-		(servm[index]*SECONDS) + servs[index];
-		wait[index] = serv[index]-arri[index];
-		total = total + wait[index];
-	end
+  for index = 0 to count
+  begin
+    arri[index] = (arrih[index]*MINUTES*SECONDS) +
+    (arrim[index]*SECONDS) + arris[index];
+    serv[index] = (servh[index]*MINUTES*SECONDS) +
+    (servm[index]*SECONDS) + servs[index];
+    wait[index] = serv[index]-arri[index];
+    total = total + wait[index];
+  end
 end
 
 function Avg(integer count, integer total)
 begin
-	avg = total/count;
+  avg = total/count;
 end
 
 function Highest(integer count, integer wait[], integer *longest)
 begin
-	for index = 0 to count
-	begin
-		if (wait[index] > longest)
-		then longest = wait[index]
-		
-	end
+  for index = 0 to count
+  begin
+    if (wait[index] > longest)
+    then longest = wait[index]
+
+  end
 end
 
 function Lowest(integer count, integer wait[], integer *shortest)
 begin
-	for index = 0 to count
-	begin
-		if (wait[index] < shortest)
-		then shortest = wait[index]
-	end
+  for index = 0 to count
+  begin
+    if (wait[index] < shortest)
+    then shortest = wait[index]
+  end
 end
 
 function CalcRange(integer longest, integer shortest)
 begin
-	range = longest-shortest
+  range = longest-shortest
 end
 
 function CalcDev(integer count, real avg, integer wait[])
 begin
-	sum = 0
-	for index = 0 to count
-	begin
-		sum = sum + (wait[index]-avg))^2
-	end
-	stdev = sqrt(sum/(count-1))
+  sum = 0
+  for index = 0 to count
+  begin
+    sum = sum + (wait[index]-avg))^2
+  end
+  stdev = sqrt(sum/(count-1))
 end
 */
 
@@ -260,51 +260,51 @@ double CalcDev(int count, double avg, int wait[]);
 
 int main()
 {
-	int ID[MAX],                    // ID numbers of tellers
-	    arrih[MAX],                 // Arrival time hour
+  int ID[MAX],                    // ID numbers of tellers
+      arrih[MAX],                 // Arrival time hour
             arrim[MAX],                 // Arrival time minutes
             arris[MAX],                 // Arrival time seconds
             servh[MAX],                 // Served time hour
             servm[MAX],                 // Served time minutes
             servs[MAX],                 // Served time seconds
-	    arri[MAX],                  // Arrival times in seconds
-	    serv[MAX],                  // Served times in seconds
-	    wait[MAX],                  // Wait times in seconds
-	    count,                      // Number of people served
-	    shortest,                   // The shortest wait time
-	    longest,                    // The longest wait time
-	    total,                      // Total of the wait times
-	    range;                      // Range of the wait times
-	double avg,                     // Average of the wait times
-	       stdev;                   // Standard deviation of wait times
-	ifstream input("time.data");
-	ofstream out("out.data");
-	out<<fixed<<setprecision(2);
-	PrintHeader(out);
-	shortest = 10000000;
-	longest = -10000000;
-	count = 0;
-	total = 0;
-	input>>ID[count];
-	while(!input.eof())
-	{
-		input>>arrih[count]>>arrim[count]>>arris[count];
-		input>>servh[count]>>servm[count]>>servs[count];
-		count = count + 1;
-		input>>ID[count];
-	}
-	CalcWait(count, arrih, arrim, arris, servh, servm, servs,
-	arri, serv, wait, total);
-	PrintTable(out, ID, count, wait, arri, serv);
-	avg = Avg(count, total);
-	Highest(count, wait, longest);
-	Lowest(count, wait, shortest);
-	range = CalcRange(longest, shortest);
-	stdev = CalcDev(count, avg, wait);
-	PrintSummary(out, count, avg, range, stdev);
-	input.close();
-	out.close();
-	return 0;
+      arri[MAX],                  // Arrival times in seconds
+      serv[MAX],                  // Served times in seconds
+      wait[MAX],                  // Wait times in seconds
+      count,                      // Number of people served
+      shortest,                   // The shortest wait time
+      longest,                    // The longest wait time
+      total,                      // Total of the wait times
+      range;                      // Range of the wait times
+  double avg,                     // Average of the wait times
+         stdev;                   // Standard deviation of wait times
+  ifstream input("time.data");
+  ofstream out("out.data");
+  out<<fixed<<setprecision(2);
+  PrintHeader(out);
+  shortest = 10000000;
+  longest = -10000000;
+  count = 0;
+  total = 0;
+  input>>ID[count];
+  while(!input.eof())
+  {
+    input>>arrih[count]>>arrim[count]>>arris[count];
+    input>>servh[count]>>servm[count]>>servs[count];
+    count = count + 1;
+    input>>ID[count];
+  }
+  CalcWait(count, arrih, arrim, arris, servh, servm, servs,
+  arri, serv, wait, total);
+  PrintTable(out, ID, count, wait, arri, serv);
+  avg = Avg(count, total);
+  Highest(count, wait, longest);
+  Lowest(count, wait, shortest);
+  range = CalcRange(longest, shortest);
+  stdev = CalcDev(count, avg, wait);
+  PrintSummary(out, count, avg, range, stdev);
+  input.close();
+  out.close();
+  return 0;
 }
 
 /*
@@ -313,16 +313,16 @@ Input: This function receives out from main
 */
 void PrintHeader(ofstream &out)
 {
-	PrintAsterisks(out);
-	out<<"               Rouge Bank"<<endl;
-	out<<"            Wait Times Report"<<endl;
-	out<<"               10-21-2008"<<endl;
-	PrintAsterisks(out);
-	out<<"ID"<<setw(10);
-	out<<"Arrival"<<setw(10);
-	out<<"Service"<<setw(14);
-	out<<"Wait Time"<<endl;
-	PrintLine(out);
+  PrintAsterisks(out);
+  out<<"               Rouge Bank"<<endl;
+  out<<"            Wait Times Report"<<endl;
+  out<<"               10-21-2008"<<endl;
+  PrintAsterisks(out);
+  out<<"ID"<<setw(10);
+  out<<"Arrival"<<setw(10);
+  out<<"Service"<<setw(14);
+  out<<"Wait Time"<<endl;
+  PrintLine(out);
 }
 
 /*
@@ -331,7 +331,7 @@ Input: This function receives out from main
 */
 void PrintAsterisks(ofstream &out)
 {
-	out<<"*****************************************"<<endl;
+  out<<"*****************************************"<<endl;
 }
 
 /*
@@ -340,25 +340,25 @@ Input: This function receives out from main
 */
 void PrintLine(ofstream &out)
 {
-	out<<"-----------------------------------------"<<endl;
+  out<<"-----------------------------------------"<<endl;
 }
 
 /*
-Purpose: Prints the data in the form of a table 
+Purpose: Prints the data in the form of a table
 Input: This function receives out, ID[], count, wait[], arri[],
 and serv[] from main
 */
 void PrintTable(ofstream &out, int ID[], int count, int wait[],
 int arri[], int serv[])
 {
-	int index;                                  // The index of the arrays
-	for (index = 0; index < count; index++)
-	{
-		out<<ID[index]<<"    ";
-		out<<arri[index]<<setw(10);
-		out<<serv[index]<<setw(10);
-		out<<wait[index]<<endl;
-	}
+  int index;                                  // The index of the arrays
+  for (index = 0; index < count; index++)
+  {
+    out<<ID[index]<<"    ";
+    out<<arri[index]<<setw(10);
+    out<<serv[index]<<setw(10);
+    out<<wait[index]<<endl;
+  }
 }
 
 /*
@@ -368,36 +368,36 @@ Input: This function receives out, count, avg, range, and stdev from main
 void PrintSummary(ofstream &out, int count, double avg, int range,
 double stdev)
 {
-	PrintLine(out);
-	out<<"The total number of records: "<<count<<endl;
-	out<<"The average wait time is "<<avg<<" seconds"<<endl;
-	out<<"The range of wait times is "<<range<<" seconds"<<endl;
-	out<<"The standard deviation is "<<stdev<<endl;
+  PrintLine(out);
+  out<<"The total number of records: "<<count<<endl;
+  out<<"The average wait time is "<<avg<<" seconds"<<endl;
+  out<<"The range of wait times is "<<range<<" seconds"<<endl;
+  out<<"The standard deviation is "<<stdev<<endl;
 }
 
 /*
-Purpose: Calculates the wait times, arrival times, and served times in 
+Purpose: Calculates the wait times, arrival times, and served times in
 seconds and returns them to main
 Input: This function receives count, arrih[], arrim[], arris[],
-servh[], servm[], servs[], arri[], serv[], wait[], and 
+servh[], servm[], servs[], arri[], serv[], wait[], and
 a reference to total from main
-Output: Returns the calculated wait times, wait[], arrival times converted 
+Output: Returns the calculated wait times, wait[], arrival times converted
 to seconds, arri[], and converted served times, serv[], to main
 */
 void CalcWait(int count, int arrih[], int arrim[], int arris[],
 int servh[],int servm[], int servs[], int arri[], int serv[],
 int wait[], int &total)
 {
-	int index;                                // The index of the arrays
-	for (index = 0; index < count; index++)
-	{
-		arri[index] = (arrih[index]*MINUTES*SECONDS) +
-		(arrim[index]*SECONDS) + arris[index];
-		serv[index] = (servh[index]*MINUTES*SECONDS) +
-		(servm[index]*SECONDS) + servs[index];
-		wait[index] = serv[index]-arri[index];
-		total = total + wait[index];
-	}
+  int index;                                // The index of the arrays
+  for (index = 0; index < count; index++)
+  {
+    arri[index] = (arrih[index]*MINUTES*SECONDS) +
+    (arrim[index]*SECONDS) + arris[index];
+    serv[index] = (servh[index]*MINUTES*SECONDS) +
+    (servm[index]*SECONDS) + servs[index];
+    wait[index] = serv[index]-arri[index];
+    total = total + wait[index];
+  }
 }
 
 /*
@@ -407,9 +407,9 @@ Output: Returns avg, which is the average, to main
 */
 double Avg(int count, int total)
 {
-	double avg;                  // Average of the wait times
-	avg = total/count;
-	return avg;
+  double avg;                  // Average of the wait times
+  avg = total/count;
+  return avg;
 }
 
 /*
@@ -419,14 +419,14 @@ Output: This function returns the highest wait time to main
 */
 void Highest(int count, int wait[], int &longest)
 {
-	int index;                               // The index of the arrays
-	for (index = 0; index < count; index++)
-	{
-		if (wait[index] > longest)
-		{
-			longest = wait[index];
-		}
-	}
+  int index;                               // The index of the arrays
+  for (index = 0; index < count; index++)
+  {
+    if (wait[index] > longest)
+    {
+      longest = wait[index];
+    }
+  }
 }
 
 /*
@@ -436,14 +436,14 @@ Output: Returns the lowest wait time to main
 */
 void Lowest(int count, int wait[], int &shortest)
 {
-	int index;                               // The index of the arrays
-	for (index = 0; index < count; index++)
-	{
-		if (wait[index] < shortest)
-		{
-			shortest = wait[index];
-		}
-	}
+  int index;                               // The index of the arrays
+  for (index = 0; index < count; index++)
+  {
+    if (wait[index] < shortest)
+    {
+      shortest = wait[index];
+    }
+  }
 }
 
 /*
@@ -453,9 +453,9 @@ Output: Returns the range to main
 */
 int CalcRange(int longest, int shortest)
 {
-	int range;                     // Range of the wait times
-	range = longest-shortest;
-	return range;
+  int range;                     // Range of the wait times
+  range = longest-shortest;
+  return range;
 }
 
 /*
@@ -465,14 +465,14 @@ Output: Returns the standard deviation to main
 */
 double CalcDev(int count, double avg, int wait[])
 {
-	int index;                  // The index of the arrays
-	double sum,                 // The sum of wait times squared
-	       stdev;               // Standard deviation of wait times
-	sum = 0;
-	for (index = 0; index < count; index++)
-	{
-		sum = sum + pow((wait[index]-avg),2);
-	}
-	stdev = sqrt(sum/(count-1));
-	return stdev;
+  int index;                  // The index of the arrays
+  double sum,                 // The sum of wait times squared
+         stdev;               // Standard deviation of wait times
+  sum = 0;
+  for (index = 0; index < count; index++)
+  {
+    sum = sum + pow((wait[index]-avg),2);
+  }
+  stdev = sqrt(sum/(count-1));
+  return stdev;
 }

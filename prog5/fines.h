@@ -12,25 +12,25 @@ const double LATE3 = .10;            // Fine rate for over 100 days late
 
 class fines
 {
-	private:
-	int ID,                      // Library account numbers
-	    days;                    // The number of days a book is late
-	double balance;              // Late penalty balance due
+  private:
+  int ID,                      // Library account numbers
+      days;                    // The number of days a book is late
+  double balance;              // Late penalty balance due
 
-	public:
-	fines();
-	fines(int cID, int cdays);
+  public:
+  fines();
+  fines(int cID, int cdays);
 
-	void CalcBal(double &total);
+  void CalcBal(double &total);
 
-	void HiLow(double &lowest, int &lowID,
-	double &highest, int &highID, int count);
+  void HiLow(double &lowest, int &lowID,
+  double &highest, int &highID, int count);
 
-	int getID();
+  int getID();
 
-	int getdays();
+  int getdays();
 
-	double getbal();
+  double getbal();
 
-	double Avg(int count, double total);
+  double Avg(int count, double total);
 };
