@@ -1,0 +1,309 @@
+/*
+Chris McKnight
+Barbara Guillot
+cs1253 Sec 1
+cs125326
+
+Specify the requirement:
+Calculate overdue books balances, average balances, highest and lowest 
+balances and their respective account numbers for East Baton Rouge 
+Parish Library.
+
+Data Analysis:
+Name            Type	 Scope        Content
+Constants:
+MAX             integer  global       Static number of records for arrays
+LATE1           real     global       Fine rate for 30-60 days late
+LATE2           real     global       Fine rate for 61-100 days late
+LATE3           real     global       Fine rate for over 100 days late
+
+Variables:
+book            file     main         The input file book.data
+report          file     main         The output file report.out
+students[]      object   main         Object of the class fines
+                         PrintTable   
+mID[]           integer  main         Library account numbers
+mdays[]         integer  main         The number of days a book is late
+mcount          integer  main         The number of accounts with late books
+lowID           integer  main         ID of the account with lowest balance
+highID          integer  main         ID of the account with highest balance
+mbalance        real     main         Late penalty balance due
+mtotal          real     main         The total of all balances due
+highest         real     main         The highest balance
+lowest          real     main         The lowest balance
+mavg            real     main         The average of all of the balances
+avg             real     fines        The average of all of the balances
+index           integer  main         The index of the arrays
+                         PrintTable
+ID              integer  fines        Library account numbers
+days            integer  fines        The number of days a book is late
+cID             integer  fines        Library account numbers
+cdays           integer  fines        The number of days a book is late
+balance         real     fines        Late penalty balance due
+
+
+Problem Analysis:
+Print table headings
+Read data into arrays while not eof
+Calculate the balances of accounts
+Print the table of ID, days overdue, and balance
+Calculte the highest and lowest balances and respective IDs
+Calculate the average balance
+Print the summary
+
+Algorithm:
+function main
+begin
+	open book for reading
+	open report for writing
+	PrintHeader(report);
+	mcount = 0;
+	lowest = 10000;
+	highest = -10000;
+	read mID[mcount];
+	while not EOF
+	begin
+		read mdays[mcount];
+		mcount = mcount + 1;
+		read mID[mcount];
+	end
+	PrintTable(report, students, mcount);
+	mavg = students[mcount].Avg(mcount, mtotal);
+	PrintSummary(report, mavg, highest, highID, lowest, lowID);
+	close the file book
+	close the file report
+end
+
+void PrintHeader(file *report)
+begin
+	PrintAsterisks(report);
+	print "East Baton Rouge Parish Library" to file report
+	print "Book Fines Report" to file report
+	print "11-6-2008" to file report
+	PrintAsterisks(report);
+	print "ID" to file report
+	print "Days" to file report
+	print "Balance" to file report
+	PrintLine(report);
+end
+
+function PrintAsterisks(file *report)
+begin
+	print "****************************************" to file report
+end
+
+void PrintLine(file *report)
+begin
+	print "----------------------------------------" to file report
+end
+
+function PrintTable(file *report, fines student[], integer ID[], integer days[], real &lowest,
+integer &lowID, real &highest, integer *highID, real *mtotal, integer count)
+begin
+	for (index = 0 to count)
+	begin
+		student[index] = fines(ID[index], days[index]);
+		student[index].CalcBal(mtotal);
+		student[index].HiLow(lowest, lowID, highest,
+ 		highID, count);
+		print student[index].getID();
+		print student[index].getdays();
+		print student[index].getbal()
+	end
+end
+
+function PrintSummary(file *report, real avg, real highest,
+integer highID, real lowest, integer lowID)
+begin
+	PrintLine(report);
+	print "The average is ", avg to file report
+	print "Account ", highID
+	print "has the highest balance of ", highest to file report
+	print "Account ", lowID
+	print "has the lowest balance of ", lowest to file report
+end
+
+class fines
+begin
+	function fines()
+	begin
+		ID = 0;
+		days = 0;
+		balance = 0.0;
+	end
+
+	function fines(integer cID, integer cdays)
+	begin
+		ID = cID;
+		days = cdays;
+	end
+
+	function fines::CalcBal(real &total)
+	begin
+		if (days >= 30 AND days <= 60)
+		then
+			begin
+				balance = LATE1*days;
+			end
+		else
+		if (days >= 61 AND days <= 100)
+		then
+			begin
+				balance = LATE2*days;
+			end
+		else
+		if (days > 100)
+		then
+			begin
+				balance = LATE3*days;
+			end
+		total = total + balance;
+	end
+
+	function HiLow(real &lowest, integer &lowID,
+	real &highest, integer &highID, integer count)
+	begin
+		if (balance < lowest)
+		then
+			begin
+				lowest = balance;
+				lowID = ID;
+			end
+		if (balance > highest)
+		then
+			begin
+				highest = balance;
+				highID = ID;
+			end
+	end
+
+	function Avg(integer count, real total)
+	begin
+		avg = total/count;
+		return avg;
+	end
+end
+*/
+
+#include "fines.cpp"
+
+void PrintHeader(ofstream &report);
+
+void PrintAsterisks(ofstream &report);
+
+void PrintLine(ofstream &report);
+
+void PrintTable(ofstream &report, fines student[], int ID[], int days[], double &lowest, int &lowID,
+double &highest, int &highID, double &mtotal, int count);
+
+void PrintSummary(ofstream &report, double avg, double highest, 
+int highID, double lowest, int lowID);
+
+int main()
+{
+	ifstream book("book.data");   // The input file book.data
+	ofstream report("report.out");// The output file report.out
+	fines students[MAX];          // Object of the class fines
+	int mID[MAX],                 // Library account numbers
+	    mdays[MAX],               // The number of days a book is late
+	    mcount,                   // The number of accounts with late books
+	    lowID,                    // ID of the account with lowest balance
+	    highID;                   // ID of the account with highest balance
+	double mbalance,              // Late penalty balance due
+	       mtotal,                // The total of all balances due
+	       highest,               // The highest balance
+	       lowest,                // The lowest balance
+	       mavg;                  // The average of all of the balances
+	PrintHeader(report);
+	mcount = 0;
+	lowest = 10000;
+	highest = -10000;
+	book>>mID[mcount];
+	while (!book.eof())
+	{
+		book>>mdays[mcount];
+		mcount = mcount + 1;
+		book>>mID[mcount];
+	}
+	PrintTable(report, students, mID, mdays, lowest, lowID,
+	highest, highID, mtotal, mcount);
+	mavg = students[mcount].Avg(mcount, mtotal);
+	PrintSummary(report, mavg, highest, highID, lowest, lowID);
+	return 0;
+}
+
+/*
+Purpose: Prints the name of the library, report name, date, and table 
+headings
+Input: This function receives report from main
+*/
+void PrintHeader(ofstream &report)
+{
+	report<<fixed<<showpoint<<setprecision(2);
+	PrintAsterisks(report);
+	report<<"     East Baton Rouge Parish Library"<<endl;
+	report<<"           Book Fines Report"<<endl;
+	report<<"              11-6-2008"<<endl;
+	PrintAsterisks(report);
+	report<<"ID"<<setw(12)<<"Days"<<setw(12)<<"Balance"<<endl;
+	PrintLine(report);
+}
+
+/*
+Purpose: Prints asterisks and a new line
+Input: This function receives report from main
+*/
+void PrintAsterisks(ofstream &report)
+{
+	report<<"****************************************"<<endl;
+}
+
+/*
+Purpose: Prints dashes and a new line
+Input: This function receives report from main
+*/
+void PrintLine(ofstream &report)
+{
+	report<<"----------------------------------------"<<endl;
+}
+
+/*
+Purpose: Prints the table of data which includes ID, days overdue, and 
+balance
+Input: This function receives report, student array, ID array, days array, 
+lowest, lowID, highest, highID, mtotal, and count from main
+*/
+void PrintTable(ofstream &report, fines student[], int ID[], int days[], double &lowest, int &lowID,
+double &highest, int &highID, double &mtotal, int count)
+{
+	int index;                              // The index of the arrays
+	for (index = 0; index < count; index++)
+	{
+		student[index] = fines(ID[index], days[index]);
+		student[index].CalcBal(mtotal);
+		student[index].HiLow(lowest, lowID, highest,
+ 		highID, count);
+		report<<student[index].getID();
+		report<<setw(10)<<student[index].getdays();
+		report<<"  "<<setw(10)<<student[index].getbal()<<endl;
+	}
+}
+
+/*
+Purpose: Prints the summary which includes the average balance, highest 
+and lowest balances, and highest and lowest balance IDs
+Input: This function receives report, avg, highest, highID, lowest, and 
+lowID
+Output: Prints the average balance, highest and lowest balances, and their 
+respective IDs
+*/
+void PrintSummary(ofstream &report, double avg, double highest,
+int highID, double lowest, int lowID)
+{
+	PrintLine(report);
+	report<<"The average is "<<avg<<endl;
+	report<<"Account "<<highID;
+	report<<" has the highest balance of "<<highest<<endl;
+	report<<"Account "<<lowID;
+	report<<" has the lowest balance of "<<lowest<<endl;
+}
