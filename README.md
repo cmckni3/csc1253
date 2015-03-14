@@ -4,10 +4,17 @@ Simple C++ programs I wrote in Fall 2008 CSC 1253 at LSU
 
 ## Run using docker
 
-* Start the container
+* [Install docker](https://docs.docker.com/installation/#installation)
+
+* Build the container
 
 ```bash
 docker build -t cmckni3/csc1253 .
+```
+
+* Start the container
+
+```bash
 docker run -it cmckni3/csc1253
 ```
 
