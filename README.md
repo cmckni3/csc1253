@@ -21,5 +21,5 @@ Simple C++ programs I wrote in Fall 2008 CSC 1253 at LSU
 * Run a program
 
   ```bash
-  root@a808aef2c401:/csc1253# ./prog1/prog1
+  bash-4.3# ./prog1/prog1
   ```
