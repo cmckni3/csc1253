@@ -1,8 +1,6 @@
-FROM phusion/baseimage:0.9.16
+FROM gliderlabs/alpine:3.1
 
-RUN apt-get update -y
-RUN apt-get upgrade -y
-RUN apt-get install -y build-essential
+RUN apk --update add build-base bash
 
 ADD . /csc1253
 
