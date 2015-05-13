@@ -1,6 +1,4 @@
-FROM gliderlabs/alpine:3.1
-
-RUN apk --update add build-base bash
+FROM cmckni3/docker-alpine-build-tools:latest
 
 ADD . /csc1253
 
